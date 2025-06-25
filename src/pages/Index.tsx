@@ -1,12 +1,61 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React from 'react';
+import FloatingNavigation from '@/components/FloatingNavigation';
+import HeroSection from '@/components/HeroSection';
+import PlaceholderSection from '@/components/PlaceholderSection';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="relative">
+      <FloatingNavigation />
+      
+      <HeroSection />
+      
+      <PlaceholderSection
+        id="struggle"
+        title="The Enterprise Struggle"
+        subtitle="Traditional approaches are falling behind"
+        description="While AI promises transformation, most enterprises struggle with fragmented implementations, data silos, and scaling challenges that prevent them from realizing true value."
+        bgColor="bg-gray-50"
+      />
+      
+      <PlaceholderSection
+        id="solution"
+        title="Intelligence as Infrastructure"
+        subtitle="A new approach to enterprise AI"
+        description="Vantage Labs provides the foundational layer that transforms how enterprises deploy, manage, and scale AI across their entire organization."
+      />
+      
+      <PlaceholderSection
+        id="platform"
+        title="The Vantage Platform"
+        subtitle="Built for enterprise scale and security"
+        description="Our platform integrates seamlessly with existing systems while providing the governance, security, and scalability that enterprises demand."
+        bgColor="bg-midnight text-white"
+      />
+      
+      <PlaceholderSection
+        id="proof"
+        title="Proven Results"
+        subtitle="Measurable impact across industries"
+        description="Leading enterprises trust Vantage Labs to accelerate their AI initiatives, reduce implementation time, and achieve sustainable competitive advantages."
+      />
+      
+      <PlaceholderSection
+        id="differentiation"
+        title="Why Vantage Labs"
+        subtitle="The enterprise AI partner you can trust"
+        description="We combine deep technical expertise with enterprise-grade security and compliance, ensuring your AI initiatives succeed at scale."
+        bgColor="bg-gray-50"
+      />
+      
+      <PlaceholderSection
+        id="cta"
+        title="Ready to Transform?"
+        subtitle="Start your AI transformation journey"
+        description="Join the enterprises that are already reshaping their industries with intelligent infrastructure. Let's discuss how Vantage Labs can accelerate your success."
+        bgColor="bg-indigo text-white"
+      />
     </div>
   );
 };
