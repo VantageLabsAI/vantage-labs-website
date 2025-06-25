@@ -1,7 +1,9 @@
+
 import React from 'react';
 import FloatingNavigation from '@/components/FloatingNavigation';
 import HeroSection from '@/components/HeroSection';
 import StruggleSection from '@/components/StruggleSection';
+import SolutionSection from '@/components/SolutionSection';
 import PlaceholderSection from '@/components/PlaceholderSection';
 
 const Index = () => {
@@ -13,12 +15,7 @@ const Index = () => {
       
       <StruggleSection />
       
-      <PlaceholderSection
-        id="solution"
-        title="Intelligence as Infrastructure"
-        subtitle="A new approach to enterprise AI"
-        description="Vantage Labs provides the foundational layer that transforms how enterprises deploy, manage, and scale AI across their entire organization."
-      />
+      <SolutionSection />
       
       <PlaceholderSection
         id="platform"
