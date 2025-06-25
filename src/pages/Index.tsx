@@ -1,7 +1,7 @@
-
 import React from 'react';
 import FloatingNavigation from '@/components/FloatingNavigation';
 import HeroSection from '@/components/HeroSection';
+import StruggleSection from '@/components/StruggleSection';
 import PlaceholderSection from '@/components/PlaceholderSection';
 
 const Index = () => {
@@ -11,13 +11,7 @@ const Index = () => {
       
       <HeroSection />
       
-      <PlaceholderSection
-        id="struggle"
-        title="The Enterprise Struggle"
-        subtitle="Traditional approaches are falling behind"
-        description="While AI promises transformation, most enterprises struggle with fragmented implementations, data silos, and scaling challenges that prevent them from realizing true value."
-        bgColor="bg-gray-50"
-      />
+      <StruggleSection />
       
       <PlaceholderSection
         id="solution"
