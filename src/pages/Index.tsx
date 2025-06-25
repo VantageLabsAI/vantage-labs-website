@@ -4,49 +4,43 @@ import FloatingNavigation from '@/components/FloatingNavigation';
 import HeroSection from '@/components/HeroSection';
 import StruggleSection from '@/components/StruggleSection';
 import SolutionSection from '@/components/SolutionSection';
-import PlaceholderSection from '@/components/PlaceholderSection';
+import PlatformSection from '@/components/PlatformSection';
+import ProofSection from '@/components/ProofSection';
+import DifferentiationSection from '@/components/DifferentiationSection';
+import CTASection from '@/components/CTASection';
 
 const Index = () => {
   return (
-    <div className="relative">
+    <div className="relative snap-container">
       <FloatingNavigation />
       
-      <HeroSection />
+      <div className="snap-section">
+        <HeroSection />
+      </div>
       
-      <StruggleSection />
+      <div className="snap-section">
+        <StruggleSection />
+      </div>
       
-      <SolutionSection />
+      <div className="snap-section">
+        <SolutionSection />
+      </div>
       
-      <PlaceholderSection
-        id="platform"
-        title="The Vantage Platform"
-        subtitle="Built for enterprise scale and security"
-        description="Our platform integrates seamlessly with existing systems while providing the governance, security, and scalability that enterprises demand."
-        bgColor="bg-midnight text-white"
-      />
+      <div className="snap-section">
+        <PlatformSection />
+      </div>
       
-      <PlaceholderSection
-        id="proof"
-        title="Proven Results"
-        subtitle="Measurable impact across industries"
-        description="Leading enterprises trust Vantage Labs to accelerate their AI initiatives, reduce implementation time, and achieve sustainable competitive advantages."
-      />
+      <div className="snap-section">
+        <ProofSection />
+      </div>
       
-      <PlaceholderSection
-        id="differentiation"
-        title="Why Vantage Labs"
-        subtitle="The enterprise AI partner you can trust"
-        description="We combine deep technical expertise with enterprise-grade security and compliance, ensuring your AI initiatives succeed at scale."
-        bgColor="bg-gray-50"
-      />
+      <div className="snap-section">
+        <DifferentiationSection />
+      </div>
       
-      <PlaceholderSection
-        id="cta"
-        title="Ready to Transform?"
-        subtitle="Start your AI transformation journey"
-        description="Join the enterprises that are already reshaping their industries with intelligent infrastructure. Let's discuss how Vantage Labs can accelerate your success."
-        bgColor="bg-indigo text-white"
-      />
+      <div className="snap-section">
+        <CTASection />
+      </div>
     </div>
   );
 };

@@ -1,8 +1,32 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  background-color: rgb(var(--background));
+  overscroll-behavior: none;
+}
+
+body {
+  background-color: rgb(var(--background));
+}
+
+.snap-container {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  overscroll-behavior: none;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. */
 
@@ -123,3 +147,48 @@
     @apply bg-gradient-to-r from-midnight to-indigo bg-clip-text text-transparent;
   }
 }
+
+@keyframes bg-waves {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+.animate-bg-waves {
+  background: repeating-linear-gradient(120deg, #818cf8 0px, #818cf8 2px, transparent 2px, transparent 40px);
+  background-size: 200% 200%;
+  animation: bg-waves 24s linear infinite;
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-16px); }
+}
+.animate-float-slow { animation: float-slow 8s ease-in-out infinite; }
+@keyframes float-slower {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}
+.animate-float-slower { animation: float-slower 12s ease-in-out infinite; }
+@keyframes float-slowest {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float-slowest { animation: float-slowest 16s ease-in-out infinite; }
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 6s ease-in-out infinite;
+}
+@keyframes pulse-node {
+  0%, 100% { filter: drop-shadow(0 0 12px #818cf8); }
+  50% { filter: drop-shadow(0 0 32px #818cf8); }
+}
+.group-hover\:animate-pulse-node:hover {
+  animation: pulse-node 1.5s infinite;
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.animate-fade-in { animation: fade-in 1s ease-in; }
