@@ -1,8 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import { Menu } from 'lucide-react';
-
-
+import { Menu, Brain } from 'lucide-react';
 
 const FloatingNavigation = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -17,6 +16,7 @@ const FloatingNavigation = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   return (
     <>
       <nav
@@ -25,12 +25,15 @@ const FloatingNavigation = () => {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
         )}
       >
-        <div className="bg-[rgba(255,255,255,0.7)] backdrop-blur-md rounded-xl px-6 h-[56px] shadow-lg border border-gray-200/20 flex items-center justify-between mt-4 transition-all duration-200 hover:saturate-150 hover:bg-white/80">
-          {/* Logo */}
-          <div className="flex items-center">
-            <div className="w-32 h-8 bg-gray-200 rounded animate-pulse">
-              {/* Placeholder for logo */}
+        <div className="bg-white/40 backdrop-blur-lg rounded-xl px-6 h-[56px] shadow-sm border border-white/30 flex items-center justify-between mt-4 transition-all duration-200 hover:bg-white/50">
+          {/* Logo and Brand */}
+          <div className="flex items-center gap-3">
+            <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-indigo-600 to-indigo-500 rounded-lg shadow-sm">
+              <Brain className="w-5 h-5 text-white" />
             </div>
+            <span className="text-lg font-semibold text-gray-800 tracking-tight">
+              Vantage AI
+            </span>
           </div>
 
           {/* Right side controls */}
@@ -38,15 +41,15 @@ const FloatingNavigation = () => {
             {/* Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 hover:bg-gray-200/80 hover:saturate-150 rounded-lg transition-colors duration-200 relative"
+              className="p-2 hover:bg-gray-200/60 rounded-lg transition-colors duration-200 relative"
               aria-label="Toggle menu"
             >
-              <Menu className="w-6 h-6 text-gray-700" />
+              <Menu className="w-6 h-6 text-gray-600" />
             </button>
 
             {/* Get Started Button */}
             <button 
-              className="px-4 py-2 bg-[#6366F1] text-white rounded-lg font-medium hover:scale-105 hover:shadow-lg hover:bg-[#4f46e5] transition-all duration-200 font-inter hidden sm:block"
+              className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:scale-105 hover:shadow-md hover:bg-indigo-700 transition-all duration-200 font-inter hidden sm:block"
               aria-label="Get Started"
             >
               Get Started
@@ -84,7 +87,7 @@ const FloatingNavigation = () => {
             <a href="#differentiation" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">Why Us</a>
           </nav>
 
-          <button className="w-full px-4 py-2 bg-[#6366F1] text-white rounded-lg font-medium hover:bg-[#5355E8] transition-colors duration-200 sm:hidden">
+          <button className="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors duration-200 sm:hidden">
             Get Started
           </button>
         </div>

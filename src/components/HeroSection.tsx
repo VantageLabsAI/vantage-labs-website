@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import AnimatedBackground from './AnimatedBackground';
@@ -5,6 +6,13 @@ import { cn } from '@/lib/utils';
 import { Brain, Network, Workflow } from 'lucide-react';
 
 const HeroSection = () => {
+  const scrollToCompanionSection = () => {
+    const companionSection = document.getElementById('companion');
+    if (companionSection) {
+      companionSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-pearl">
       {/* Animated background dots/waves */}
@@ -193,21 +201,7 @@ const HeroSection = () => {
            transition={{ duration: 0.8, delay: 3.5 }}
          >
            <motion.button 
-             onClick={() => {
-               // Scroll to the next section after #hero
-               const heroSection = document.getElementById('hero');
-               if (heroSection) {
-                 let nextSection = heroSection.nextElementSibling;
-                 if (nextSection && nextSection.querySelector && nextSection.querySelector('section')) {
-                   nextSection = nextSection.querySelector('section');
-                 }
-                 if (nextSection) {
-                   const yOffset = -80;
-                   const y = nextSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                   window.scrollTo({ top: y, behavior: 'smooth' });
-                 }
-               }
-             }}
+             onClick={scrollToCompanionSection}
              className="group inline-flex items-center gap-3 text-xl md:text-2xl text-indigo-600 font-semibold bg-white/60 rounded-full px-8 py-3 shadow-md hover:bg-indigo-50 transition-all duration-200 animate-fade-in"
              whileHover={{ scale: 1.08 }}
              whileTap={{ scale: 0.96 }}
