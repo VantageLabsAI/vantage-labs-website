@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
 import { Menu, Brain } from 'lucide-react';
@@ -49,7 +48,7 @@ const FloatingNavigation = () => {
 
             {/* Get Started Button */}
             <button 
-              className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:scale-105 hover:shadow-md hover:bg-indigo-700 transition-all duration-200 font-inter hidden sm:block"
+              className="px-4 py-2 bg-[#6366F1] text-white rounded-lg font-medium hover:scale-105 hover:shadow-md hover:bg-indigo-700 transition-all duration-200 font-inter hidden sm:block"
               aria-label="Get Started"
             >
               Get Started
@@ -87,7 +86,7 @@ const FloatingNavigation = () => {
             <a href="#differentiation" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">Why Us</a>
           </nav>
 
-          <button className="w-full px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors duration-200 sm:hidden">
+          <button className="w-full px-4 py-2 bg-[#6366F1] text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors duration-200 sm:hidden">
             Get Started
           </button>
         </div>

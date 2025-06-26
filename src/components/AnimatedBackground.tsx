@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface FloatingNode {
@@ -11,25 +10,26 @@ interface FloatingNode {
 
 const AnimatedBackground = () => {
   // Generate floating nodes
-  const nodes: FloatingNode[] = Array.from({ length: 20 }, (_, i) => ({
+  const nodes: FloatingNode[] = Array.from({ length: 36 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
-    size: Math.random() * 6 + 2,
+    size: Math.random() * 10 + 6,
     delay: Math.random() * 4,
   }));
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-midnight/20 via-indigo/10 to-emerald/5" />
+      {/* Light gradient overlay */}
+      <div className="absolute inset-0 bg-[#F9FAFB]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-indigo-100/30 via-emerald-50/20 to-white/0" />
       
       {/* Animated network nodes */}
       <div className="absolute inset-0">
         {nodes.map((node) => (
           <div
             key={node.id}
-            className="absolute rounded-full bg-indigo/20 animate-float"
+            className="absolute rounded-full bg-indigo-400/50 animate-float"
             style={{
               left: `${node.x}%`,
               top: `${node.y}%`,
@@ -45,9 +45,9 @@ const AnimatedBackground = () => {
       <svg className="absolute inset-0 w-full h-full">
         <defs>
           <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#6366F1" stopOpacity="0.1" />
-            <stop offset="50%" stopColor="#6366F1" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#10B981" stopOpacity="0.1" />
+            <stop offset="0%" stopColor="#6366F1" stopOpacity="0.18" />
+            <stop offset="50%" stopColor="#6366F1" stopOpacity="0.28" />
+            <stop offset="100%" stopColor="#10B981" stopOpacity="0.18" />
           </linearGradient>
         </defs>
         
@@ -81,11 +81,11 @@ const AnimatedBackground = () => {
 
       {/* Subtle grid pattern */}
       <div 
-        className="absolute inset-0 opacity-[0.02]"
+        className="absolute inset-0 opacity-[0.04]"
         style={{
           backgroundImage: `
-            linear-gradient(to right, #1A1F36 1px, transparent 1px),
-            linear-gradient(to bottom, #1A1F36 1px, transparent 1px)
+            linear-gradient(to right, #6366F1 1px, transparent 1px),
+            linear-gradient(to bottom, #6366F1 1px, transparent 1px)
           `,
           backgroundSize: '60px 60px'
         }}
