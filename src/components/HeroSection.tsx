@@ -1,9 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import AnimatedBackground from './AnimatedBackground';
 import { cn } from '@/lib/utils';
-import { Brain, Network, Workflow } from 'lucide-react';
 
 const HeroSection = () => {
   const scrollToCompanionSection = () => {
@@ -13,217 +11,272 @@ const HeroSection = () => {
     }
   };
 
+  const scrollToSolutionSection = () => {
+    const solutionSection = document.getElementById('solution');
+    if (solutionSection) {
+      solutionSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToStruggleSection = () => {
+    const struggleSection = document.getElementById('struggle');
+    if (struggleSection) {
+      struggleSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-pearl">
-      {/* Animated background dots/waves */}
+      {/* Subtle background elements */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="w-full h-full animate-bg-waves opacity-10" />
-        {/* Add floating dots */}
-        <div className="absolute top-1/4 left-1/3 w-6 h-6 bg-indigo-300 rounded-full blur-2xl opacity-10 animate-float-slow" />
-        <div className="absolute bottom-1/3 right-1/4 w-8 h-8 bg-blue-200 rounded-full blur-2xl opacity-10 animate-float-slower" />
-        <div className="absolute top-2/3 right-1/2 w-4 h-4 bg-purple-300 rounded-full blur-xl opacity-10 animate-float-slowest" />
+        <div className="absolute top-1/4 left-1/3 w-6 h-6 bg-indigo-300 rounded-full blur-2xl opacity-5 animate-float-slow" />
+        <div className="absolute bottom-1/3 right-1/4 w-8 h-8 bg-blue-200 rounded-full blur-2xl opacity-5 animate-float-slower" />
+        <div className="absolute top-2/3 right-1/2 w-4 h-4 bg-purple-300 rounded-full blur-xl opacity-5 animate-float-slowest" />
       </div>
-      <AnimatedBackground />
       
       {/* Content */}
       <div className="relative z-10 section-padding container-wide pt-12 md:pt-16">
-        {/* Main headline - Full width */}
-        <motion.h1 
-          className="text-5xl md:text-6xl lg:text-7xl font-bold text-midnight mb-8 leading-tight text-center max-w-5xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
-        >
-          The way enterprises{' '}
-          <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-400 animate-gradient-x">create value</span>{' '}
-          is changing.
-        </motion.h1>
+        {/* Side-by-side layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto items-center min-h-[80vh]">
+          {/* Left Side - Text Block */}
+          <div className="space-y-8 flex flex-col justify-center">
+            {/* Headline */}
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-midnight leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
+            >
+              Unlock Competitive Advantage with AI That{' '}
+              <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-indigo-400">
+                Thinks and Scales
+              </span>{' '}
+              Like Your Best People
+            </motion.h1>
 
-        {/* Two-column layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-7xl mx-auto items-center">
-          {/* Left Column - Animated Bullet Points */}
-          <div className="space-y-10 flex flex-col justify-center">
-            {[{
-              text: "Work is being reimagined.",
-              icon: Workflow,
-              className: "text-[#b07f4f] font-medium text-2xl md:text-3xl",
-              delay: 0
-            }, {
-              text: "Intelligence is becoming infrastructure.",
-              icon: Network,
-              className: "text-[#a06e42] font-medium text-2xl md:text-3xl",
-              delay: 0.5
-            }, {
-              text: "AI isn't just a tool — it's the decision layer.",
-              icon: Brain,
-              className: "text-[#1c1c1c] font-semibold text-2xl md:text-3xl",
-              delay: 1
-            }].map(({ text, icon: Icon, className, delay }, index) => (
-              <motion.div 
-                key={text}
-                className="flex items-center gap-6 group"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, delay, ease: [0.4, 0, 0.2, 1] }}
+            {/* Subheadline */}
+            <motion.p 
+              className="text-xl md:text-2xl text-slate leading-relaxed max-w-2xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              We build and deploy AI Companions that automate critical thinking, insights, and decisions — then govern them through a platform that scales AI across your enterprise with speed and security.
+            </motion.p>
+
+            {/* Buttons */}
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 pt-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <motion.button 
+                onClick={scrollToCompanionSection}
+                className="group px-8 py-4 bg-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:bg-indigo-700 hover:scale-105 transition-all duration-200 text-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <motion.div 
-                  className="p-4 rounded-2xl bg-gradient-to-br from-indigo-50 to-white shadow-lg flex-shrink-0"
-                  whileHover={{ scale: 1.08 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Icon className="w-8 h-8 md:w-10 md:h-10 text-indigo-600" />
-                </motion.div>
-                <div>
-                  <motion.p 
-                    className={className}
-                    initial={{ opacity: 0.5 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: delay + 0.2 }}
-                  >
-                    {text}
-                  </motion.p>
-                </div>
-              </motion.div>
-            ))}
+                Explore Our AI Companions
+              </motion.button>
+              
+              <motion.button 
+                onClick={scrollToSolutionSection}
+                className="group px-8 py-4 bg-emerald-600 text-white font-semibold rounded-xl shadow-lg hover:bg-emerald-700 hover:scale-105 transition-all duration-200 text-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                See the Platform in Action
+              </motion.button>
+              
+              <motion.button 
+                onClick={scrollToStruggleSection}
+                className="group px-8 py-4 border-2 border-indigo-600 text-indigo-600 font-semibold rounded-xl hover:bg-indigo-50 hover:scale-105 transition-all duration-200 text-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Why AI, Why Now?
+              </motion.button>
+            </motion.div>
           </div>
 
-          {/* Right Column - Enhanced AI Illustration */}
+          {/* Right Side - AI Companion Visual */}
           <div className="flex items-center justify-center">
             <motion.div
-              className="w-full max-w-lg relative group"
+              className="w-full max-w-2xl relative"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.3 }}
+              transition={{ duration: 1.2, delay: 0.4 }}
             >
-              {/* Radial glow */}
-              <div className="absolute -inset-8 rounded-full bg-gradient-radial from-indigo-300/30 via-indigo-100/10 to-transparent blur-2xl z-0 pointer-events-none" />
               <svg
-                viewBox="0 0 400 400"
-                className="w-full h-full filter drop-shadow-2xl z-10 relative"
+                viewBox="0 0 600 600"
+                className="w-full h-full filter drop-shadow-2xl"
               >
                 <defs>
-                  <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#818cf8" stopOpacity="0.1" />
+                  {/* Gradients for the AI Companion */}
+                  <radialGradient id="companionGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stopColor="#8B5CF6" stopOpacity="0.8" />
+                    <stop offset="50%" stopColor="#6366F1" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="#3B82F6" stopOpacity="0.2" />
+                  </radialGradient>
+                  
+                  <linearGradient id="threadGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#10B981" stopOpacity="0.6" />
+                    <stop offset="100%" stopColor="#6366F1" stopOpacity="0.3" />
                   </linearGradient>
-                  <linearGradient id="pulse" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#4f46e5" stopOpacity="0.2" />
-                    <stop offset="100%" stopColor="#818cf8" stopOpacity="0.05" />
-                  </linearGradient>
+                  
+                  <radialGradient id="orbGlow" cx="50%" cy="50%" r="30%">
+                    <stop offset="0%" stopColor="#F0F9FF" stopOpacity="0.9" />
+                    <stop offset="70%" stopColor="#8B5CF6" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#6366F1" stopOpacity="0.1" />
+                  </radialGradient>
                 </defs>
-                <g transform="translate(200 200)">
-                  {/* Outer pulse ring */}
+                
+                <g transform="translate(300 300)">
+                  {/* Background ethereal glow */}
                   <motion.circle
-                    r="160"
-                    fill="url(#pulse)"
+                    r="250"
+                    fill="url(#companionGlow)"
                     initial={{ scale: 0.8, opacity: 0 }}
-                    animate={{ scale: 1.2, opacity: [0.5, 0] }}
+                    animate={{ scale: 1.1, opacity: [0.3, 0.1, 0.3] }}
                     transition={{ 
-                      duration: 3,
+                      duration: 6,
                       repeat: Infinity,
                       ease: "easeInOut"
                     }}
                   />
-                  {/* Main glow circle */}
-                  <motion.circle
-                    r="120"
-                    fill="url(#glow)"
-                    initial={{ scale: 0.9 }}
-                    animate={{ scale: 1.1 }}
-                    transition={{ 
-                      duration: 4,
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                      ease: "easeInOut"
-                    }}
-                  />
-                  {/* Connected nodes with hover pulse */}
-                  {[0, 60, 120, 180, 240, 300].map((angle, i) => (
-                    <motion.g key={angle} transform={`rotate(${angle})`}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: i * 0.2 }}
+                  
+                  {/* Floating data streams */}
+                  {[...Array(8)].map((_, i) => (
+                    <motion.path
+                      key={i}
+                      d={`M${Math.cos(i * Math.PI / 4) * 120} ${Math.sin(i * Math.PI / 4) * 120} Q${Math.cos(i * Math.PI / 4) * 80} ${Math.sin(i * Math.PI / 4) * 80} ${Math.cos(i * Math.PI / 4) * 160} ${Math.sin(i * Math.PI / 4) * 160}`}
+                      stroke="url(#threadGlow)"
+                      strokeWidth="3"
+                      fill="none"
+                      strokeDasharray="8 4"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ 
+                        pathLength: 1, 
+                        opacity: [0.5, 0.8, 0.5],
+                        strokeDashoffset: [0, -24, -48]
+                      }}
+                      transition={{ 
+                        duration: 4,
+                        delay: i * 0.2,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                    />
+                  ))}
+                  
+                  {/* Orbiting elements */}
+                  {[...Array(6)].map((_, i) => (
+                    <motion.g
+                      key={i}
+                      initial={{ rotate: i * 60 }}
+                      animate={{ rotate: i * 60 + 360 }}
+                      transition={{ 
+                        duration: 20,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
                     >
                       <motion.circle
-                        cx="0"
-                        cy="-80"
-                        r="12"
-                        fill="#4f46e5"
-                        className="group-hover:animate-pulse-node"
-                        style={{ filter: 'drop-shadow(0 0 12px #818cf8)' }}
-                        initial={{ scale: 0.9 }}
-                        animate={{ scale: [1, 1.15, 1] }}
+                        cx="140"
+                        cy="0"
+                        r="8"
+                        fill="#6366F1"
+                        initial={{ scale: 0.8 }}
+                        animate={{ scale: [0.8, 1.2, 0.8] }}
                         transition={{ 
                           duration: 2,
-                          delay: i * 0.2,
+                          delay: i * 0.3,
                           repeat: Infinity,
-                          repeatDelay: 4
+                          ease: "easeInOut"
                         }}
-                      />
-                      <motion.line
-                        x1="0"
-                        y1="-70"
-                        x2="0"
-                        y2="0"
-                        stroke="#4f46e5"
-                        strokeWidth="3"
-                        strokeDasharray="4 4"
-                        className="group-hover:stroke-indigo-400"
-                        initial={{ pathLength: 0 }}
-                        animate={{ pathLength: 1 }}
-                        transition={{ 
-                          duration: 1.5,
-                          delay: 0.5 + i * 0.1
-                        }}
+                        style={{ filter: 'drop-shadow(0 0 8px #6366F1)' }}
                       />
                     </motion.g>
                   ))}
-                  {/* Central node with drop shadow */}
+                  
+                  {/* Central AI Companion orb */}
                   <motion.circle
-                    r="38"
-                    fill="#4f46e5"
-                    style={{ filter: 'drop-shadow(0 0 32px #818cf8)' }}
+                    r="60"
+                    fill="url(#orbGlow)"
                     initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5, delay: 2 }}
+                    animate={{ 
+                      scale: [1, 1.05, 1],
+                      filter: [
+                        'drop-shadow(0 0 20px #8B5CF6)',
+                        'drop-shadow(0 0 40px #6366F1)',
+                        'drop-shadow(0 0 20px #8B5CF6)'
+                      ]
+                    }}
+                    transition={{ 
+                      duration: 3,
+                      delay: 1,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+                  
+                  {/* Inner core */}
+                  <motion.circle
+                    r="25"
+                    fill="#F0F9FF"
+                    initial={{ scale: 0 }}
+                    animate={{ 
+                      scale: [1, 1.1, 1],
+                      opacity: [0.9, 0.7, 0.9]
+                    }}
+                    transition={{ 
+                      duration: 2,
+                      delay: 1.2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                    style={{ filter: 'drop-shadow(0 0 12px #8B5CF6)' }}
+                  />
+                </g>
+                
+                {/* Abstract enterprise elements */}
+                <g opacity="0.3">
+                  {/* Floating platforms */}
+                  <motion.rect
+                    x="50"
+                    y="100"
+                    width="80"
+                    height="20"
+                    rx="10"
+                    fill="#6366F1"
+                    initial={{ y: 100, opacity: 0 }}
+                    animate={{ y: [100, 80, 100], opacity: [0.3, 0.5, 0.3] }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                  />
+                  
+                  <motion.rect
+                    x="470"
+                    y="450"
+                    width="80"
+                    height="20"
+                    rx="10"
+                    fill="#10B981"
+                    initial={{ y: 450, opacity: 0 }}
+                    animate={{ y: [450, 470, 450], opacity: [0.3, 0.5, 0.3] }}
+                    transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                   />
                 </g>
               </svg>
             </motion.div>
           </div>
         </div>
+      </div>
 
-        {/* CTA */}
-         <motion.div 
-           className="mt-4 text-center"
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 0.8, delay: 3.5 }}
-         >
-           <motion.button 
-             onClick={scrollToCompanionSection}
-             className="group inline-flex items-center gap-3 text-xl md:text-2xl text-indigo-600 font-semibold bg-white/60 rounded-full px-8 py-3 shadow-md hover:bg-indigo-50 transition-all duration-200 animate-fade-in"
-             whileHover={{ scale: 1.08 }}
-             whileTap={{ scale: 0.96 }}
-           >
-             <span className="border-b-2 border-indigo-200 group-hover:border-indigo-300 transition-colors">
-               Discover what's possible
-             </span>
-             <motion.span 
-               className="inline-block text-2xl ml-2"
-               animate={{ y: [0, 8, 0] }}
-               transition={{ duration: 1.5, repeat: Infinity, repeatDelay: 2, ease: "easeInOut" }}
-             >
-               ↓
-             </motion.span>
-           </motion.button>
-         </motion.div>
-       </div>
-
-        {/* Bottom fade */}
-         <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-pearl to-transparent pointer-events-none" />
-        </section>
-      );
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-pearl to-transparent pointer-events-none" />
+    </section>
+  );
 };
 
 export default HeroSection;
