@@ -1,123 +1,128 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { BarChart3, MessageSquare, TrendingUp, Globe } from 'lucide-react';
-
-interface FeatureCardProps {
-  icon: React.ReactNode;
-  title: string;
-  subtitle: string;
-  description: string;
-  delay?: number;
-}
-
-const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, subtitle, description, delay = 0 }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6, delay }}
-    whileHover={{ scale: 1.02 }}
-    className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all group"
-  >
-    <div className="flex flex-col gap-4">
-      <div className="text-indigo p-3 bg-indigo/5 rounded-xl w-fit group-hover:bg-indigo/10 transition-colors">
-        {icon}
-      </div>
-      <div>
-        <h3 className="text-xl font-semibold text-midnight mb-2">{title}</h3>
-        <p className="text-indigo font-medium italic mb-3">{subtitle}</p>
-        <p className="text-slate leading-relaxed">{description}</p>
-      </div>
-    </div>
-  </motion.div>
-);
+import { Brain, User, BookOpen, Plug, Globe, Shield } from 'lucide-react';
 
 const CompanionSection = () => {
-  const features = [
-    {
-      icon: <BarChart3 size={24} />,
-      title: "AI-Generated Business Dashboards",
-      subtitle: "Anticipate. Prioritize. Take Action.",
-      description: "Dynamic dashboards tailored to user roles — blending critical KPIs with emerging signals. No more blind spots or lag. Just timely, focused visibility."
-    },
-    {
-      icon: <MessageSquare size={24} />,
-      title: "Conversational Problem Solver",
-      subtitle: "Ask, Analyze, Act — All in One Chat",
-      description: "Describe any business issue in natural language and get instant answers — explanations, insights, and actions. No tools to juggle, just clarity."
-    },
-    {
-      icon: <TrendingUp size={24} />,
-      title: "Always-On Insight Engine",
-      subtitle: "See What Changed, Why It Changed, and What to Do Next",
-      description: "AI continuously scans for anomalies, trends, or shifts — and tells you what's driving them. Users are alerted the moment something moves."
-    },
-    {
-      icon: <Globe size={24} />,
-      title: "Integrated External Intelligence",
-      subtitle: "Put Market Signals Next to Internal Metrics",
-      description: "The companion enriches your view with market data — like commodity prices, demand forecasts, or weather trends — wherever relevant."
-    }
+  const traits = [
+    { icon: Brain, label: "Internal Memory" },
+    { icon: User, label: "Role Awareness" },
+    { icon: BookOpen, label: "Domain Expertise" },
+    { icon: Plug, label: "Tool Integration" },
+    { icon: Globe, label: "External Context" },
+    { icon: Shield, label: "Enterprise Governance" }
   ];
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
-    <section id="companion" className="min-h-screen bg-pearl py-20">
-      <div className="container-wide section-padding">
+    <section
+      id="companion"
+      className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden"
+    >
+      {/* Background with subtle grid pattern */}
+      <div 
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, #6B7280 1px, transparent 1px),
+            linear-gradient(to bottom, #6B7280 1px, transparent 1px)
+          `,
+          backgroundSize: '40px 40px'
+        }}
+      />
+
+      {/* Main content container */}
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 w-full max-w-6xl mx-auto">
+        
+        {/* Muted header */}
         <motion.div
+          className="mb-8"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-midnight mb-6">
-            Enterprise AI Companions to Supercharge How You Run, Learn, and Decide
-          </h2>
-          <p className="text-xl text-slate max-w-4xl mx-auto leading-relaxed">
-            Your AI Companion brings together dashboards, insights, and chat — helping your teams 
-            anticipate, analyze, and act — faster, smarter, and with greater confidence.
-          </p>
+          <span className="text-sm font-medium text-slate-500 tracking-wide uppercase">
+            👋 Meet your Companion →
+          </span>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-          {features.map((feature, index) => (
-            <FeatureCard
-              key={feature.title}
-              icon={feature.icon}
-              title={feature.title}
-              subtitle={feature.subtitle}
-              description={feature.description}
-              delay={index * 0.1}
-            />
+        {/* Primary headline */}
+        <motion.h2
+          className="text-4xl md:text-5xl lg:text-6xl font-bold text-midnight leading-tight mb-8 max-w-4xl"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          A new kind of partner — one that listens, reasons, and works with you.
+        </motion.h2>
+
+        {/* Optional subheadline */}
+        <motion.p
+          className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          Whether you're solving a problem, making a decision, or running your day — your Companion is right beside you, thinking through it all.
+        </motion.p>
+
+        {/* Trait icons grid - faded and subtle */}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 w-full max-w-5xl"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+          viewport={{ once: true }}
+        >
+          {traits.map((trait, index) => (
+            <motion.div
+              key={trait.label}
+              className="flex flex-col items-center space-y-3 opacity-30 hover:opacity-60 transition-opacity duration-300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 0.3, y: 0 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: 0.8 + (index * 0.1),
+                ease: "easeOut" 
+              }}
+              viewport={{ once: true }}
+              whileHover={{ opacity: 0.6 }}
+            >
+              <div className="w-12 h-12 flex items-center justify-center">
+                <trait.icon className="w-8 h-8 text-slate-400" strokeWidth={1.5} />
+              </div>
+              <span className="text-sm font-medium text-slate-500 text-center">
+                {trait.label}
+              </span>
+            </motion.div>
           ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center"
-        >
-          <p className="text-slate italic mb-8 text-lg">
-            AI isn't a tool bolted on — it's the new connective tissue of the enterprise.
-          </p>
-          <Button 
-            onClick={() => scrollToSection('solution')}
-            className="bg-indigo hover:bg-indigo/90 text-white px-8 py-3 text-lg font-medium rounded-xl transition-all hover:scale-105"
-          >
-            Explore How It Works
-          </Button>
         </motion.div>
+      </div>
+
+      {/* Subtle floating particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {Array.from({ length: 12 }).map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-indigo-300/20 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [-20, 20],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: 4 + Math.random() * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
       </div>
     </section>
   );
