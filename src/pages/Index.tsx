@@ -2,6 +2,7 @@
 import React from 'react';
 import FloatingNavigation from '@/components/FloatingNavigation';
 import HeroSection from '@/components/HeroSection';
+import DefiningSection from '@/components/DefiningSection';
 import CompanionSection from '@/components/CompanionSection';
 import StruggleSection from '@/components/StruggleSection';
 import SolutionSection from '@/components/SolutionSection';
@@ -17,6 +18,10 @@ const Index = () => {
       
       <div className="snap-section">
         <HeroSection />
+      </div>
+      
+      <div className="snap-section">
+        <DefiningSection />
       </div>
       
       <div className="snap-section">
