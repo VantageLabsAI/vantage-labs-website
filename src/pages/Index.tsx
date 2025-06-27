@@ -36,21 +36,13 @@ const Index = () => {
         <EngagementModesSection />
       </div>
       
-      <div className="snap-section">
-        <InsideCompanionSection />
-      </div>
-      
-      <div className="snap-section">
-        <SolutionSection />
-      </div>
+
       
       <div className="snap-section">
         <PlatformSection />
       </div>
       
-      <div className="snap-section">
-        <ProofSection />
-      </div>
+
       
       <div className="snap-section">
         <DifferentiationSection />
@@ -58,6 +50,10 @@ const Index = () => {
       
       <div className="snap-section">
         <CTASection />
+      </div>
+      
+      <div className="snap-section">
+        <SolutionSection />
       </div>
     </div>
   );
