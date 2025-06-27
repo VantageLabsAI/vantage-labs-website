@@ -41,7 +41,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
         >
-          Unlock Competitive Advantage with AI That Thinks and Scales<br />
+          Unlock Competitive Advantage with AI That Thinks and Scales{' '}
           <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-emerald-300">
             Like Your Best People
           </span>

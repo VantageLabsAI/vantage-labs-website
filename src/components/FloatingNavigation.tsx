@@ -28,7 +28,7 @@ const FloatingNavigation = () => {
           {/* Logo and Brand */}
           <div className="flex items-center gap-3">
             <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-indigo-600 to-indigo-500 rounded-lg shadow-sm">
-              <Brain className="w-5 h-5 text-white" />
+              <Brain className="w-5 h-5" style={{ color: '#D4AF37' }} />
             </div>
             <span className="text-lg font-semibold text-gray-800 tracking-tight">
               Vantage AI

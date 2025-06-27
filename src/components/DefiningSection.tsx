@@ -67,7 +67,8 @@ const DefiningSection = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            An AI Companion is a specialized, agentic system that understands context, reasons through decisions, and delivers measurable business outcomes — securely and at scale.
+            An AI Companion is your organization’s Agentic AI partner — built to understand, reason, and act across business contexts to unlock compounding value.
+            {/* An AI Companion is a specialized, agentic system that understands context, reasons through decisions, and delivers measurable business outcomes — securely and at scale. */}
           </motion.h2>
 
           {/* 2x3 Capability Grid */}

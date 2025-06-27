@@ -1,15 +1,16 @@
-
 import React from 'react';
 import FloatingNavigation from '@/components/FloatingNavigation';
 import HeroSection from '@/components/HeroSection';
 import CompanionSection from '@/components/CompanionSection';
-import DefiningSection from '@/components/DefiningSection';
-import StruggleSection from '@/components/StruggleSection';
+import CompanionHighlights from '../components/ProofSection';
+import EngagementModesSection from '../components/EngagementModesSection';
+
 import SolutionSection from '@/components/SolutionSection';
 import PlatformSection from '@/components/PlatformSection';
 import ProofSection from '@/components/ProofSection';
 import DifferentiationSection from '@/components/DifferentiationSection';
 import CTASection from '@/components/CTASection';
+import DefiningSection from '@/components/DefiningSection';
 
 const Index = () => {
   return (
@@ -20,16 +21,17 @@ const Index = () => {
         <HeroSection />
       </div>
       
+
       <div className="snap-section">
         <CompanionSection />
       </div>
       
       <div className="snap-section">
-        <DefiningSection />
+        <CompanionHighlights />
       </div>
       
       <div className="snap-section">
-        <StruggleSection />
+        <EngagementModesSection />
       </div>
       
       <div className="snap-section">

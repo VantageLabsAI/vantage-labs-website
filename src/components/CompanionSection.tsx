@@ -1,104 +1,120 @@
-
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Brain, User, BookOpen, Plug, Globe, Shield } from 'lucide-react';
+import { motion, useInView } from 'framer-motion';
+
+const BACKGROUND_IMG = '/public/companion-bg.jpg'; // Place the image in public/ as companion-bg.jpg
+
+const phrases = [
+  'solving a problem',
+  'making a decision',
+  'running your day',
+];
 
 const CompanionSection = () => {
-  const traits = [
-    { icon: Brain, label: "Internal Memory" },
-    { icon: User, label: "Role Awareness" },
-    { icon: BookOpen, label: "Domain Expertise" },
-    { icon: Plug, label: "Tool Integration" },
-    { icon: Globe, label: "External Context" },
-    { icon: Shield, label: "Enterprise Governance" }
-  ];
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
+
+  // Phrase cycling state
+  const [phraseIdx, setPhraseIdx] = React.useState(0);
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setPhraseIdx((idx) => (idx + 1) % phrases.length);
+    }, 2200);
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollToProofSection = () => {
+    const proofSection = document.getElementById('proof');
+    if (proofSection) {
+      proofSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <section
       id="companion"
-      className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden"
+      ref={ref}
+      className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden bg-white"
+      style={{ scrollSnapAlign: 'start', scrollSnapStop: 'always' }}
     >
-      {/* Background with subtle grid pattern */}
-      <div 
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, #6B7280 1px, transparent 1px),
-            linear-gradient(to bottom, #6B7280 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px'
-        }}
+      {/* Full-screen background image */}
+      <img
+        src={BACKGROUND_IMG}
+        alt="AI Companion handshake cityscape"
+        className="absolute inset-0 w-full h-full object-cover object-center z-0"
+        style={{ filter: 'brightness(1.04) blur(0.5px)' }}
       />
+      {/* Optional overlay for readability */}
+      <div className="absolute inset-0 bg-black/20 z-10" />
 
-      {/* Main content container */}
-      <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 w-full max-w-6xl mx-auto">
-        
-        {/* Muted header */}
+      {/* Muted Header - centered, near top */}
+      <div className="w-full flex justify-center z-20" style={{ position: 'absolute', top: '8rem' }}>
         <motion.div
-          className="mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: -20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-sm font-light uppercase tracking-widest flex items-center justify-center gap-2 mb-2 text-indigo-400"
         >
-          <span className="text-sm font-medium text-slate-500 tracking-wide uppercase">
-            👋 Meet your Companion →
-          </span>
+          <span role="img" aria-label="wave">👋</span> Meet your Companion
         </motion.div>
+      </div>
 
-        {/* Primary headline */}
-        <motion.h2
-          className="text-4xl md:text-5xl lg:text-6xl font-bold text-midnight leading-tight mb-8 max-w-4xl"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          viewport={{ once: true }}
+      {/* Primary Headline */}
+      <motion.h2
+        initial={{ opacity: 0, y: 30 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="relative z-20 text-3xl md:text-5xl lg:text-6xl font-bold text-center max-w-4xl mx-auto mb-8 drop-shadow-xl"
+        style={{ fontFamily: 'Space Grotesk, system-ui, sans-serif', color: '#E0E0DC' }}
+      >
+        A new kind of partner — one that listens, reasons, and works with you.
+      </motion.h2>
+
+      {/* Optional Subheadline with animated phrase and new line for the rest */}
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="relative z-20 text-lg md:text-xl text-center max-w-2xl mx-auto"
+        style={{ textShadow: '0 2px 8px rgba(0,0,0,0.32)', color: '#E0E0DC' }}
+      >
+        Whether you're{' '}
+        <span
+          className="font-semibold"
+          style={{
+            color: '#D4AF37',
+            textShadow: '0 0 8px #8CB4F1, 0 0 16px #D4AF37',
+            padding: '0 0.25em',
+            background: 'rgba(0,0,0,0.08)',
+            borderRadius: '0.25em',
+            display: 'inline-block',
+            minWidth: '8.5em',
+            transition: 'color 0.3s',
+          }}
         >
-          A new kind of partner — one that listens, reasons, and works with you.
-        </motion.h2>
+          {phrases[phraseIdx]}
+        </span>
+        <br />
+        — your Companion is right beside you, thinking through it all.
+      </motion.p>
 
-        {/* Optional subheadline */}
-        <motion.p
-          className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-2xl mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          viewport={{ once: true }}
-        >
-          Whether you're solving a problem, making a decision, or running your day — your Companion is right beside you, thinking through it all.
-        </motion.p>
-
-        {/* Trait icons grid - faded and subtle */}
+      {/* Explore Companion Capabilities CTA at the bottom */}
+      <div className="w-full flex justify-center z-20" style={{ position: 'absolute', bottom: '2.5rem' }}>
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-12 w-full max-w-5xl"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1, delay: 1.2 }}
+          className="text-sm font-light uppercase tracking-widest flex items-center gap-2"
+          style={{ textAlign: 'center', color: '#4A90E2', letterSpacing: '0.08em' }}
         >
-          {traits.map((trait, index) => (
-            <motion.div
-              key={trait.label}
-              className="flex flex-col items-center space-y-3 opacity-30 hover:opacity-60 transition-opacity duration-300"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 0.3, y: 0 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: 0.8 + (index * 0.1),
-                ease: "easeOut" 
-              }}
-              viewport={{ once: true }}
-              whileHover={{ opacity: 0.6 }}
-            >
-              <div className="w-12 h-12 flex items-center justify-center">
-                <trait.icon className="w-8 h-8 text-slate-400" strokeWidth={1.5} />
-              </div>
-              <span className="text-sm font-medium text-slate-500 text-center">
-                {trait.label}
-              </span>
-            </motion.div>
-          ))}
-        </motion.div>
+          <motion.button
+            onClick={scrollToProofSection}
+            className="group px-6 py-3 bg-[#6366F1] text-white font-semibold rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-all duration-200 text-base"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Explore Companion Capabilities
+          </motion.button>
+         </motion.div>
       </div>
 
       {/* Subtle floating particles */}
@@ -129,3 +145,13 @@ const CompanionSection = () => {
 };
 
 export default CompanionSection;
+
+/* Add this to your global CSS if not present:
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 1.6s infinite;
+}
+*/
