@@ -82,7 +82,7 @@ const FloatingNavigation = () => {
             <a href="#struggle" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">Challenge</a>
             <a href="#solution" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">Solution</a>
             <a href="#platform" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">Platform</a>
-            <a href="#proof" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">Results</a>
+            <a href="#capabilities" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">Results</a>
             <a href="#differentiation" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors duration-200">Why Us</a>
           </nav>
 

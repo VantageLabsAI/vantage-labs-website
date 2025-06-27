@@ -22,10 +22,10 @@ const CompanionSection = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const scrollToProofSection = () => {
-    const proofSection = document.getElementById('proof');
-    if (proofSection) {
-      proofSection.scrollIntoView({ behavior: 'smooth' });
+  const scrollToCapabilitiesSection = () => {
+  const capabilitiesSection = document.getElementById('capabilities');
+    if (capabilitiesSection) {
+    capabilitiesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -107,7 +107,7 @@ const CompanionSection = () => {
           style={{ textAlign: 'center', color: '#4A90E2', letterSpacing: '0.08em' }}
         >
           <motion.button
-            onClick={scrollToProofSection}
+            onClick={scrollToCapabilitiesSection}
             className="group px-6 py-3 bg-[#6366F1] text-white font-semibold rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-all duration-200 text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

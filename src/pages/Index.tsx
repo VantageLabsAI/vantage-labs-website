@@ -1,15 +1,14 @@
-
 import React from 'react';
 import FloatingNavigation from '@/components/FloatingNavigation';
 import HeroSection from '@/components/HeroSection';
 import CompanionSection from '@/components/CompanionSection';
-import CompanionHighlights from '../components/ProofSection';
+import CapabilitiesSection from '../components/CapabilitiesSection';
 import EngagementModesSection from '../components/EngagementModesSection';
 import InsideCompanionSection from '@/components/InsideCompanionSection';
 
-import SolutionSection from '@/components/SolutionSection';
+
 import PlatformSection from '@/components/PlatformSection';
-import ProofSection from '@/components/ProofSection';
+
 import DifferentiationSection from '@/components/DifferentiationSection';
 import CTASection from '@/components/CTASection';
 import DefiningSection from '@/components/DefiningSection';
@@ -23,13 +22,12 @@ const Index = () => {
         <HeroSection />
       </div>
       
-
       <div className="snap-section">
         <CompanionSection />
       </div>
       
       <div className="snap-section">
-        <CompanionHighlights />
+        <CapabilitiesSection />
       </div>
       
       <div className="snap-section">
@@ -41,16 +39,10 @@ const Index = () => {
       </div>
       
       <div className="snap-section">
-        <SolutionSection />
-      </div>
-      
-      <div className="snap-section">
         <PlatformSection />
       </div>
       
-      <div className="snap-section">
-        <ProofSection />
-      </div>
+
       
       <div className="snap-section">
         <DifferentiationSection />
@@ -59,6 +51,8 @@ const Index = () => {
       <div className="snap-section">
         <CTASection />
       </div>
+      
+
     </div>
   );
 };
