@@ -1,100 +1,226 @@
-import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { Bell, MessageCircle, LayoutDashboard, CheckCircle, Share2 } from 'lucide-react';
+
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { MessageCircle, Bell, Workflow, TrendingUp, CheckSquare } from 'lucide-react';
 
 const MODES = [
   {
-    icon: <Bell size={40} />, 
+    id: 'conversational',
+    title: 'Conversational',
+    subtitle: 'Natural dialogue and reasoning',
+    icon: <MessageCircle size={20} />,
+    visual: (
+      <div className="w-full h-full bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 flex flex-col justify-center">
+        <div className="space-y-4">
+          <div className="bg-white p-4 rounded-lg shadow-sm max-w-xs">
+            <p className="text-sm text-gray-700">"What's our Q3 performance looking like?"</p>
+          </div>
+          <div className="bg-indigo-500 text-white p-4 rounded-lg shadow-sm max-w-xs ml-auto">
+            <p className="text-sm">Revenue is up 12% compared to Q2, with strong growth in enterprise segments. Would you like me to analyze the key drivers?</p>
+          </div>
+          <div className="bg-white p-4 rounded-lg shadow-sm max-w-xs">
+            <p className="text-sm text-gray-700">"Yes, show me the breakdown"</p>
+          </div>
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 'proactive-alerts',
     title: 'Proactive Alerts',
-    desc: 'Surface what matters — exactly when it matters. Your Companion spots patterns, flags issues, and nudges decisions.',
-    visual: <div className="w-full h-64 bg-gradient-to-br from-yellow-100 to-orange-100 rounded-2xl flex items-center justify-center text-4xl text-yellow-600">[Alert Visual]</div>,
+    subtitle: 'Surface critical insights automatically',
+    icon: <Bell size={20} />,
+    visual: (
+      <div className="w-full h-full bg-gradient-to-br from-yellow-50 to-orange-100 rounded-2xl p-8 flex items-center justify-center">
+        <motion.div 
+          className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-400"
+          animate={{ scale: [1, 1.02, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-3 h-3 bg-orange-400 rounded-full animate-pulse"></div>
+            <span className="font-semibold text-gray-800">Critical Alert</span>
+          </div>
+          <p className="text-sm text-gray-600 mb-2">Customer churn risk detected</p>
+          <p className="text-xs text-gray-500">3 enterprise accounts showing usage decline</p>
+          <button className="mt-3 text-xs bg-orange-400 text-white px-3 py-1 rounded">View Details</button>
+        </motion.div>
+      </div>
+    )
   },
   {
-    icon: <MessageCircle size={40} />, 
-    title: 'Conversational Interface',
-    desc: 'Ask, discuss, decide — in natural language. Your Companion reasons, explains, and assists like a domain expert.',
-    visual: <div className="w-full h-64 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-2xl flex items-center justify-center text-4xl text-blue-600">[Chat Visual]</div>,
+    id: 'workflow-companion',
+    title: 'Workflow Companion',
+    subtitle: 'Orchestrate multi-step processes',
+    icon: <Workflow size={20} />,
+    visual: (
+      <div className="w-full h-full bg-gradient-to-br from-purple-50 to-pink-100 rounded-2xl p-8 flex items-center justify-center">
+        <div className="space-y-4 w-full max-w-sm">
+          {[
+            { step: 1, text: 'Gather requirements', status: 'complete' },
+            { step: 2, text: 'Analyze stakeholders', status: 'complete' },
+            { step: 3, text: 'Generate proposal', status: 'active' },
+            { step: 4, text: 'Schedule review', status: 'pending' }
+          ].map(({ step, text, status }) => (
+            <div key={step} className="flex items-center gap-3">
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold ${
+                status === 'complete' ? 'bg-green-400 text-white' :
+                status === 'active' ? 'bg-purple-400 text-white animate-pulse' :
+                'bg-gray-200 text-gray-500'
+              }`}>
+                {step}
+              </div>
+              <span className={`text-sm ${status === 'pending' ? 'text-gray-400' : 'text-gray-700'}`}>
+                {text}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
   },
   {
-    icon: <LayoutDashboard size={40} />, 
-    title: 'Contextual Dashboards',
-    desc: 'Dynamic dashboards generated in real time, personalized to roles, tasks, and scenarios.',
-    visual: <div className="w-full h-64 bg-gradient-to-br from-emerald-100 to-cyan-100 rounded-2xl flex items-center justify-center text-4xl text-emerald-600">[Dashboard Visual]</div>,
+    id: 'insight-generator',
+    title: 'Insight Generator',
+    subtitle: 'Discover patterns and opportunities',
+    icon: <TrendingUp size={20} />,
+    visual: (
+      <div className="w-full h-full bg-gradient-to-br from-emerald-50 to-cyan-100 rounded-2xl p-8 flex items-center justify-center">
+        <div className="bg-white p-6 rounded-xl shadow-sm w-full max-w-sm">
+          <h4 className="font-semibold text-gray-800 mb-4">Key Insights</h4>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center p-3 bg-emerald-50 rounded-lg">
+              <span className="text-sm text-gray-700">Revenue Growth</span>
+              <span className="text-emerald-600 font-semibold">+23%</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+              <span className="text-sm text-gray-700">Customer Satisfaction</span>
+              <span className="text-blue-600 font-semibold">94%</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
+              <span className="text-sm text-gray-700">Market Opportunity</span>
+              <span className="text-orange-600 font-semibold">High</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   },
   {
-    icon: <CheckCircle size={40} />, 
-    title: 'Task Support',
-    desc: 'Execute precise actions — from updating records to generating reports — securely and autonomously.',
-    visual: <div className="w-full h-64 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-2xl flex items-center justify-center text-4xl text-indigo-600">[Task Visual]</div>,
-  },
-  {
-    icon: <Share2 size={40} />, 
-    title: 'Workflow Orchestration',
-    desc: 'Join or lead multi-step processes. The Companion can coordinate tools, people, and data flows.',
-    visual: <div className="w-full h-64 bg-gradient-to-br from-orange-100 to-pink-100 rounded-2xl flex items-center justify-center text-4xl text-orange-600">[Workflow Visual]</div>,
-  },
+    id: 'task-automator',
+    title: 'Task Automator',
+    subtitle: 'Execute actions autonomously',
+    icon: <CheckSquare size={20} />,
+    visual: (
+      <div className="w-full h-full bg-gradient-to-br from-indigo-50 to-purple-100 rounded-2xl p-8 flex items-center justify-center">
+        <div className="bg-white p-6 rounded-xl shadow-sm w-full max-w-sm">
+          <h4 className="font-semibold text-gray-800 mb-4">Automated Tasks</h4>
+          <div className="space-y-3">
+            {[
+              'Update CRM records',
+              'Generate weekly report',
+              'Schedule follow-up meetings',
+              'Send status notifications'
+            ].map((task, index) => (
+              <motion.div 
+                key={task}
+                className="flex items-center gap-3 p-2"
+                initial={{ opacity: 0.5 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: index * 0.2 }}
+              >
+                <motion.div 
+                  className="w-4 h-4 bg-green-400 rounded-full"
+                  animate={{ scale: [1, 1.2, 1] }}
+                  transition={{ duration: 1, delay: index * 0.3, repeat: Infinity }}
+                />
+                <span className="text-sm text-gray-700">{task}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
 ];
 
-const ModeStep = ({ mode, inView }: { mode: typeof MODES[0]; inView: boolean }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 40 }}
-    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-    transition={{ duration: 0.7 }}
-    className="flex flex-col md:flex-row items-center justify-center min-h-screen w-full max-w-6xl mx-auto px-4"
-    style={{ scrollSnapAlign: 'start' }}
-  >
-    {/* Left: Mode content */}
-    <div className="flex-1 flex flex-col justify-center items-center md:items-end pr-0 md:pr-12 max-w-md">
-      <div className="mb-4 flex items-center gap-4">
-        <span className="text-3xl" style={{ color: '#D4AF37' }}>{mode.icon}</span>
-        <span className="text-xl md:text-2xl font-bold text-midnight">{mode.title}</span>
-      </div>
-      <div className="text-slate-600 text-lg mb-2">{mode.desc}</div>
-    </div>
-    {/* Right: Visual illustration */}
-    <div className="flex-1 flex flex-col justify-center items-center md:items-start pl-0 md:pl-12 mt-8 md:mt-0 w-full">
-      {mode.visual}
-    </div>
-  </motion.div>
-);
-
 const EngagementModesSection = () => {
-  const headerRef = useRef<HTMLDivElement>(null);
-  const modeRefs = MODES.map(() => useRef<HTMLDivElement>(null));
-  const inViews = modeRefs.map((ref) => useInView(ref, { amount: 0.5, once: false }));
+  const [selectedMode, setSelectedMode] = useState(MODES[0].id);
+
+  const currentMode = MODES.find(mode => mode.id === selectedMode) || MODES[0];
 
   return (
-    <section id="engagement-modes" className="relative min-h-screen bg-white flex flex-col items-center justify-start overflow-x-hidden overflow-y-auto" style={{ scrollSnapType: 'y mandatory' }}>
-      {/* Sticky Section Intro */}
-      <div
-        ref={headerRef}
-        className="w-full max-w-4xl mx-auto text-center pt-24 pb-12 bg-white z-10 sticky top-0"
-        style={{ boxShadow: '0 2px 16px 0 rgba(0,0,0,0.03)' }}
-      >
-        <div className="text-sm font-light uppercase tracking-widest flex items-center justify-center gap-2 mb-2 text-indigo-400">
-          <span role="img" aria-label="wave">🤝</span> How You Engage With Your Companion
+    <section 
+      id="engagement-modes" 
+      className="min-h-screen bg-white flex flex-col items-center justify-center py-16 px-4"
+      style={{ scrollSnapAlign: 'start' }}
+    >
+      {/* Section Header */}
+      <div className="w-full max-w-6xl mx-auto text-center mb-12">
+        <div className="text-sm font-light uppercase tracking-widest flex items-center justify-center gap-2 mb-4 text-indigo-400">
+          <span role="img" aria-label="handshake">🤝</span> How You Engage With Your Companion
         </div>
-        <h2 className="text-3xl md:text-5xl font-bold text-midnight mb-4">Five Companion Engagement Modes</h2>
+        <h2 className="text-3xl md:text-4xl font-bold text-midnight mb-4">
+          Five Companion Engagement Modes
+        </h2>
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          Your AI Companion doesn't just respond — it thinks, assists, and executes. Each mode represents a way your Companion collaborates with your team, amplifying productivity and decision-making across functions.
+          Your AI Companion doesn't just respond — it thinks, assists, and executes across multiple interaction patterns.
         </p>
       </div>
 
-      {/* Vertical Scroll Steps */}
-      <div className="w-full flex-1 flex flex-col items-center justify-start" style={{ position: 'relative' }}>
-        {MODES.map((mode, i) => (
-          <div
-            key={mode.title}
-            ref={modeRefs[i]}
-            className="w-full"
-            style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          >
-            <ModeStep mode={mode} inView={inViews[i]} />
+      {/* Dynamic Split View */}
+      <div className="w-full max-w-6xl mx-auto flex flex-col lg:flex-row gap-8 lg:gap-12">
+        
+        {/* Left Column: Mode Selection */}
+        <div className="flex-1 max-w-md mx-auto lg:mx-0">
+          <div className="space-y-2">
+            {MODES.map((mode) => (
+              <motion.button
+                key={mode.id}
+                onClick={() => setSelectedMode(mode.id)}
+                className={`w-full text-left p-4 rounded-xl transition-all duration-300 ${
+                  selectedMode === mode.id 
+                    ? 'bg-indigo-50 border-2 border-indigo-200 shadow-sm' 
+                    : 'bg-gray-50 border-2 border-transparent hover:bg-gray-100'
+                }`}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <div className={`${selectedMode === mode.id ? 'text-indigo-600' : 'text-gray-400'}`}>
+                    {mode.icon}
+                  </div>
+                  <h3 className={`font-semibold ${
+                    selectedMode === mode.id ? 'text-indigo-900' : 'text-gray-700'
+                  }`}>
+                    {mode.title}
+                  </h3>
+                </div>
+                <p className={`text-sm ${
+                  selectedMode === mode.id ? 'text-indigo-700' : 'text-gray-500'
+                }`}>
+                  {mode.subtitle}
+                </p>
+              </motion.button>
+            ))}
           </div>
-        ))}
+        </div>
+
+        {/* Right Column: Visual Panel */}
+        <div className="flex-1">
+          <motion.div 
+            key={selectedMode}
+            className="h-96 lg:h-full min-h-[400px]"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          >
+            {currentMode.visual}
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default EngagementModesSection; 
+export default EngagementModesSection;
