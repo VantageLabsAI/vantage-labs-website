@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { Bell, MessageCircle, LayoutDashboard, CheckCircle, Share2 } from 'lucide-react';
 
 const MODES = [
@@ -35,26 +35,42 @@ const MODES = [
   },
 ];
 
-const EngagementModesSection = () => {
-  const [step, setStep] = useState(0);
+const ModeStep = ({ mode, inView }: { mode: typeof MODES[0]; inView: boolean }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+    transition={{ duration: 0.7 }}
+    className="flex flex-col md:flex-row items-center justify-center min-h-screen w-full max-w-6xl mx-auto px-4"
+    style={{ scrollSnapAlign: 'start' }}
+  >
+    {/* Left: Mode content */}
+    <div className="flex-1 flex flex-col justify-center items-center md:items-end pr-0 md:pr-12 max-w-md">
+      <div className="mb-4 flex items-center gap-4">
+        <span className="text-3xl" style={{ color: '#D4AF37' }}>{mode.icon}</span>
+        <span className="text-xl md:text-2xl font-bold text-midnight">{mode.title}</span>
+      </div>
+      <div className="text-slate-600 text-lg mb-2">{mode.desc}</div>
+    </div>
+    {/* Right: Visual illustration */}
+    <div className="flex-1 flex flex-col justify-center items-center md:items-start pl-0 md:pl-12 mt-8 md:mt-0 w-full">
+      {mode.visual}
+    </div>
+  </motion.div>
+);
 
-  // Scroll handler for desktop (simulate scroll steps)
-  React.useEffect(() => {
-    const onWheel = (e: WheelEvent) => {
-      if (e.deltaY > 0 && step < MODES.length - 1) {
-        setStep((s) => Math.min(s + 1, MODES.length - 1));
-      } else if (e.deltaY < 0 && step > 0) {
-        setStep((s) => Math.max(s - 1, 0));
-      }
-    };
-    window.addEventListener('wheel', onWheel, { passive: false });
-    return () => window.removeEventListener('wheel', onWheel);
-  }, [step]);
+const EngagementModesSection = () => {
+  const headerRef = useRef<HTMLDivElement>(null);
+  const modeRefs = MODES.map(() => useRef<HTMLDivElement>(null));
+  const inViews = modeRefs.map((ref) => useInView(ref, { amount: 0.5, once: false }));
 
   return (
-    <section id="engagement-modes" className="relative min-h-screen bg-white flex flex-col items-center justify-start overflow-hidden">
-      {/* Section Intro */}
-      <div className="w-full max-w-4xl mx-auto text-center pt-24 pb-12">
+    <section id="engagement-modes" className="relative min-h-screen bg-white flex flex-col items-center justify-start overflow-x-hidden overflow-y-auto" style={{ scrollSnapType: 'y mandatory' }}>
+      {/* Sticky Section Intro */}
+      <div
+        ref={headerRef}
+        className="w-full max-w-4xl mx-auto text-center pt-24 pb-12 bg-white z-10 sticky top-0"
+        style={{ boxShadow: '0 2px 16px 0 rgba(0,0,0,0.03)' }}
+      >
         <div className="text-sm font-light uppercase tracking-widest flex items-center justify-center gap-2 mb-2 text-indigo-400">
           <span role="img" aria-label="wave">🤝</span> How You Engage With Your Companion
         </div>
@@ -64,53 +80,18 @@ const EngagementModesSection = () => {
         </p>
       </div>
 
-      {/* Scroll Steps */}
-      <div className="w-full flex-1 flex flex-col md:flex-row items-stretch justify-center max-w-6xl mx-auto min-h-[60vh]">
-        {/* Left: Mode content */}
-        <div className="flex-1 flex flex-col justify-center items-center md:items-end pr-0 md:pr-12">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={step}
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 40 }}
-              transition={{ duration: 0.5 }}
-              className="w-full max-w-md"
-            >
-              <div className="mb-4 flex items-center gap-4">
-                <span className="text-3xl" style={{ color: '#D4AF37' }}>{MODES[step].icon}</span>
-                <span className="text-xl md:text-2xl font-bold text-midnight">{MODES[step].title}</span>
-              </div>
-              <div className="text-slate-600 text-lg mb-2">{MODES[step].desc}</div>
-              {/* Progress dots */}
-              <div className="flex gap-2 mt-8 justify-start">
-                {MODES.map((_, i) => (
-                  <button
-                    key={i}
-                    className={`w-3 h-3 rounded-full border-2 ${i === step ? 'bg-indigo-400 border-indigo-500' : 'bg-slate-200 border-slate-300'} transition-all`}
-                    onClick={() => setStep(i)}
-                    aria-label={`Go to mode ${i + 1}`}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-        {/* Right: Visual illustration */}
-        <div className="flex-1 flex flex-col justify-center items-center md:items-start pl-0 md:pl-12 mt-8 md:mt-0">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={step}
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -40 }}
-              transition={{ duration: 0.5 }}
-              className="w-full"
-            >
-              {MODES[step].visual}
-            </motion.div>
-          </AnimatePresence>
-        </div>
+      {/* Vertical Scroll Steps */}
+      <div className="w-full flex-1 flex flex-col items-center justify-start" style={{ position: 'relative' }}>
+        {MODES.map((mode, i) => (
+          <div
+            key={mode.title}
+            ref={modeRefs[i]}
+            className="w-full"
+            style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+          >
+            <ModeStep mode={mode} inView={inViews[i]} />
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -54,7 +54,7 @@ const CompanionSection = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-sm font-light uppercase tracking-widest flex items-center justify-center gap-2 mb-2 text-indigo-400"
         >
-          <span role="img" aria-label="wave">👋</span> Meet your Companion
+          <span role="img" aria-label="wave">👋</span> Meet your AI Companion
         </motion.div>
       </div>
 
