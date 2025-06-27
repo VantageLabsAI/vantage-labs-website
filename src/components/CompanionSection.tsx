@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 
-const BACKGROUND_IMG = '/public/companion-bg.jpg'; // Place the image in public/ as companion-bg.jpg
+const BACKGROUND_IMG = '/companion-bg.jpg'; // Place the image in public/ as companion-bg.jpg
 
 const phrases = [
   'solving a problem',
