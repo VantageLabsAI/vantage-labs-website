@@ -30,7 +30,7 @@ const FloatingNavigation = () => {
             <div className="flex items-center justify-center w-8 h-8 bg-gradient-to-br from-indigo-600 to-indigo-500 rounded-lg shadow-sm">
               <Brain className="w-5 h-5" style={{ color: '#D4AF37' }} />
             </div>
-            <span className="text-lg font-semibold text-gray-800 tracking-tight">
+            <span className="text-2xl font-semibold tracking-tight" style={{ color: '#000C60' }}>
               Vantage AI
             </span>
           </div>

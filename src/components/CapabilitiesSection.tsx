@@ -1,7 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { BookOpen, UserCheck, Briefcase, Plug, Globe, ShieldCheck } from 'lucide-react';
+import {
+  BookOpen,
+  UserCheck,
+  Briefcase,
+  Plug,
+  Globe,
+  ShieldCheck,
+  UserCircle2,
+  Package,
+  Archive,
+  BellRing,
+  RefreshCw,
+  Workflow,
+} from 'lucide-react';
+
 import AnimatedBackground from './AnimatedBackground';
 
 interface MetricCardProps {
@@ -57,36 +71,125 @@ const QuoteCard: React.FC = () => (
   </motion.div>
 );
 
+// const traits = [
+//   {
+//     icon: <BookOpen size={36} strokeWidth={1.5} />, 
+//     label: 'Internal Memory',
+//     desc: 'Remembers and learns across interactions',
+//   },
+//   {
+//     icon: <UserCheck size={36} strokeWidth={1.5} />, 
+//     label: 'Role Awareness',
+//     desc: 'Tailored to user roles and enterprise context',
+//   },
+//   {
+//     icon: <Briefcase size={36} strokeWidth={1.5} />, 
+//     label: 'Domain Expertise',
+//     desc: 'Trained on your business, not generic data',
+//   },
+//   {
+//     icon: <Plug size={36} strokeWidth={1.5} />, 
+//     label: 'Tool Integration',
+//     desc: 'Connects to your internal systems to take real action',
+//   },
+//   {
+//     icon: <Globe size={36} strokeWidth={1.5} />, 
+//     label: 'External Context Awareness',
+//     desc: 'Tracks real-world inputs and trends to stay relevant',
+//   },
+//   {
+//     icon: <ShieldCheck size={36} strokeWidth={1.5} />, 
+//     label: 'Enterprise Governance',
+//     desc: 'Transparent, controllable, and fully auditable',
+//   },
+// ];
+
+// const traits = [
+//   {
+//     icon: <UserCheck size={36} strokeWidth={1.5} />,
+//     label: 'Situational Intelligence',
+//     desc: 'Understands your role, objectives, and environment — in every interaction.',
+//   },
+//   {
+//     icon: <Briefcase size={36} strokeWidth={1.5} />,
+//     label: 'Domain Expertise',
+//     desc: 'Trained on your business, workflows, and industry — not generic data.',
+//   },
+//   {
+//     icon: <BookOpen size={36} strokeWidth={1.5} />,
+//     label: 'Structured Reasoning',
+//     desc: 'Thinks step-by-step to plan, solve, and explain like your best analysts.',
+//   },
+//   {
+//     icon: <BookOpen size={36} strokeWidth={1.5} />,
+//     label: 'Internal Memory',
+//     desc: 'Remembers decisions and interactions to stay consistent and context-aware.',
+//   },
+//   {
+//     icon: <Globe size={36} strokeWidth={1.5} />,
+//     label: 'Proactive Intelligence',
+//     desc: 'Surfaces alerts, insights, and recommendations — before you even ask.',
+//   },
+//   {
+//     icon: <Plug size={36} strokeWidth={1.5} />,
+//     label: 'Tool Orchestration',
+//     desc: 'Securely acts within your systems to retrieve data and trigger workflows.',
+//   },
+//   {
+//     icon: <ShieldCheck size={36} strokeWidth={1.5} />,
+//     label: 'Enterprise Governance',
+//     desc: 'Transparent, controllable, and auditable — aligned with your compliance needs.',
+//   },
+//   {
+//     icon: <UserCheck size={36} strokeWidth={1.5} />,
+//     label: 'Continuous Learning',
+//     desc: 'Improves over time by learning from usage, outcomes, and feedback.',
+//   },
+// ];
+
 const traits = [
   {
-    icon: <BookOpen size={36} strokeWidth={1.5} />, 
-    label: 'Internal Memory',
-    desc: 'Remembers and learns across interactions',
+    icon: <UserCheck size={36} strokeWidth={1.5} />,
+    label: 'Situational Intelligence',
+    desc: 'Understands your role, goals, and context in every interaction.',
+    // desc: 'Understands your role, goals, and environment — both internal and external.',
   },
   {
-    icon: <UserCheck size={36} strokeWidth={1.5} />, 
-    label: 'Role Awareness',
-    desc: 'Tailored to user roles and enterprise context',
-  },
-  {
-    icon: <Briefcase size={36} strokeWidth={1.5} />, 
+    icon: <Briefcase size={36} strokeWidth={1.5} />,
     label: 'Domain Expertise',
-    desc: 'Trained on your business, not generic data',
+    // desc: 'Built with deep understanding of your domain, processes, and decisions.',
+    // desc: 'Designed with domain intelligence to understand your industry’s language and logic.',
+    desc: 'Domain-smart by design. Sharpened by your institutional knowledge.',
   },
   {
-    icon: <Plug size={36} strokeWidth={1.5} />, 
-    label: 'Tool Integration',
-    desc: 'Connects to your internal systems to take real action',
+    icon: <Workflow size={36} strokeWidth={1.5} />,
+    label: 'Structured Reasoning',
+    desc: 'Plans, solves, and explains with step-by-step logic.',
   },
   {
-    icon: <Globe size={36} strokeWidth={1.5} />, 
-    label: 'External Context Awareness',
-    desc: 'Tracks real-world inputs and trends to stay relevant',
+    icon: <BookOpen size={36} strokeWidth={1.5} />,
+    label: 'Internal Memory',
+    desc: 'Remembers interactions to stay consistent and aware.',
   },
   {
-    icon: <ShieldCheck size={36} strokeWidth={1.5} />, 
+    icon: <Plug size={36} strokeWidth={1.5} />,
+    label: 'Tool Orchestration',
+    desc: 'Connects to your systems to act and execute.',
+  },
+  {
+    icon: <Globe size={36} strokeWidth={1.5} />,
+    label: 'Proactive Intelligence',
+    desc: 'Surfaces insights and alerts before you ask.',
+  },
+  {
+    icon: <ShieldCheck size={36} strokeWidth={1.5} />,
     label: 'Enterprise Governance',
-    desc: 'Transparent, controllable, and fully auditable',
+    desc: 'Transparent, auditable, and built for compliance.',
+  },
+  {
+    icon: <RefreshCw size={36} strokeWidth={1.5} />,
+    label: 'Reinforcement Learning',
+    desc: 'Improves with usage, outcomes, and feedback.',
   },
 ];
 
@@ -114,7 +217,7 @@ const CompanionHighlights = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="text-sm font-light uppercase tracking-widest flex items-center justify-center gap-2 mb-2 text-indigo-400"
         >
-          <span role="img" aria-label="brain">🧠</span> Understand its capabilities
+          <span role="img" aria-label="brain">🧠</span> Understand Companion's capabilities
         </motion.div>
       </div>
 
@@ -129,13 +232,14 @@ const CompanionHighlights = () => {
           className="font-bold text-midnight"
           style={{ fontFamily: 'Space Grotesk, system-ui, sans-serif', fontSize: '2.3rem' }}
         >
-          An AI Companion is your organization's Agentic AI partner — built to understand, reason, and act across business contexts.
+          Powered by Agentic AI. Designed to Mirror and Elevate Your Best Teams.
+          {/* An AI Companion is your organization's Agentic AI partner — built to understand, reason, and act across business contexts. */}
         </h2>
       </motion.div>
 
       {/* Trait Highlights */}
       <div className="relative z-10 w-full flex justify-center mt-4 mb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {traits.map((trait, idx) => (
             <motion.div
               key={trait.label}
@@ -160,7 +264,8 @@ const CompanionHighlights = () => {
           className="px-8 py-3 bg-[#6366F1] text-white font-semibold rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-all duration-200 text-base"
           style={{ fontFamily: 'Space Grotesk, system-ui, sans-serif' }}
         >
-          View Engagement Modes
+          	See How You Engage with Your Companion
+          {/* View Engagement Modes */}
         </a>
       </div>
     </section>

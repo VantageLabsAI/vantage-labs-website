@@ -6,8 +6,8 @@ import { MessageCircle, Bell, Workflow, TrendingUp, CheckSquare } from 'lucide-r
 const MODES = [
   {
     id: 'conversational',
-    title: 'Conversational',
-    subtitle: 'Natural dialogue and reasoning',
+    title: 'Conversational Mode',
+    subtitle: 'Ask questions, explore ideas, and reason through decisions.',
     icon: <MessageCircle size={20} />,
     visual: (
       <div className="w-full h-full bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 flex flex-col justify-center">
@@ -27,8 +27,8 @@ const MODES = [
   },
   {
     id: 'proactive-alerts',
-    title: 'Proactive Alerts',
-    subtitle: 'Surface critical insights automatically',
+    title: 'Proactive Mode',
+    subtitle: 'Get insights and alerts — surfaced automatically when they matter most.',
     icon: <Bell size={20} />,
     visual: (
       <div className="w-full h-full bg-gradient-to-br from-yellow-50 to-orange-100 rounded-2xl p-8 flex items-center justify-center">
@@ -49,67 +49,9 @@ const MODES = [
     )
   },
   {
-    id: 'workflow-companion',
-    title: 'Workflow Companion',
-    subtitle: 'Orchestrate multi-step processes',
-    icon: <Workflow size={20} />,
-    visual: (
-      <div className="w-full h-full bg-gradient-to-br from-purple-50 to-pink-100 rounded-2xl p-8 flex items-center justify-center">
-        <div className="space-y-4 w-full max-w-sm">
-          {[
-            { step: 1, text: 'Gather requirements', status: 'complete' },
-            { step: 2, text: 'Analyze stakeholders', status: 'complete' },
-            { step: 3, text: 'Generate proposal', status: 'active' },
-            { step: 4, text: 'Schedule review', status: 'pending' }
-          ].map(({ step, text, status }) => (
-            <div key={step} className="flex items-center gap-3">
-              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold ${
-                status === 'complete' ? 'bg-green-400 text-white' :
-                status === 'active' ? 'bg-purple-400 text-white animate-pulse' :
-                'bg-gray-200 text-gray-500'
-              }`}>
-                {step}
-              </div>
-              <span className={`text-sm ${status === 'pending' ? 'text-gray-400' : 'text-gray-700'}`}>
-                {text}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 'insight-generator',
-    title: 'Insight Generator',
-    subtitle: 'Discover patterns and opportunities',
-    icon: <TrendingUp size={20} />,
-    visual: (
-      <div className="w-full h-full bg-gradient-to-br from-emerald-50 to-cyan-100 rounded-2xl p-8 flex items-center justify-center">
-        <div className="bg-white p-6 rounded-xl shadow-sm w-full max-w-sm">
-          <h4 className="font-semibold text-gray-800 mb-4">Key Insights</h4>
-          <div className="space-y-3">
-            <div className="flex justify-between items-center p-3 bg-emerald-50 rounded-lg">
-              <span className="text-sm text-gray-700">Revenue Growth</span>
-              <span className="text-emerald-600 font-semibold">+23%</span>
-            </div>
-            <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
-              <span className="text-sm text-gray-700">Customer Satisfaction</span>
-              <span className="text-blue-600 font-semibold">94%</span>
-            </div>
-            <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
-              <span className="text-sm text-gray-700">Market Opportunity</span>
-              <span className="text-orange-600 font-semibold">High</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    )
-  },
-  {
     id: 'task-automator',
-    title: 'Task Automator',
-    subtitle: 'Execute actions autonomously',
+    title: 'Action Mode',
+    subtitle: 'Trigger instant, single-step actions through natural commands.',
     icon: <CheckSquare size={20} />,
     visual: (
       <div className="w-full h-full bg-gradient-to-br from-indigo-50 to-purple-100 rounded-2xl p-8 flex items-center justify-center">
@@ -141,6 +83,64 @@ const MODES = [
         </div>
       </div>
     )
+  },
+  {
+    id: 'workflow-companion',
+    title: 'Workflow Mode',
+    subtitle: 'Run and manage multi-step business processes with your Companion.',
+    icon: <Workflow size={20} />,
+    visual: (
+      <div className="w-full h-full bg-gradient-to-br from-purple-50 to-pink-100 rounded-2xl p-8 flex items-center justify-center">
+        <div className="space-y-4 w-full max-w-sm">
+          {[
+            { step: 1, text: 'Gather requirements', status: 'complete' },
+            { step: 2, text: 'Analyze stakeholders', status: 'complete' },
+            { step: 3, text: 'Generate proposal', status: 'active' },
+            { step: 4, text: 'Schedule review', status: 'pending' }
+          ].map(({ step, text, status }) => (
+            <div key={step} className="flex items-center gap-3">
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-semibold ${
+                status === 'complete' ? 'bg-green-400 text-white' :
+                status === 'active' ? 'bg-purple-400 text-white animate-pulse' :
+                'bg-gray-200 text-gray-500'
+              }`}>
+                {step}
+              </div>
+              <span className={`text-sm ${status === 'pending' ? 'text-gray-400' : 'text-gray-700'}`}>
+                {text}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  },
+  {
+    id: 'insight-generator',
+    title: 'Insight Mode',
+    subtitle: 'Interact with dashboards to uncover trends, patterns, and drivers.',
+    icon: <TrendingUp size={20} />,
+    visual: (
+      <div className="w-full h-full bg-gradient-to-br from-emerald-50 to-cyan-100 rounded-2xl p-8 flex items-center justify-center">
+        <div className="bg-white p-6 rounded-xl shadow-sm w-full max-w-sm">
+          <h4 className="font-semibold text-gray-800 mb-4">Key Insights</h4>
+          <div className="space-y-3">
+            <div className="flex justify-between items-center p-3 bg-emerald-50 rounded-lg">
+              <span className="text-sm text-gray-700">Revenue Growth</span>
+              <span className="text-emerald-600 font-semibold">+23%</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+              <span className="text-sm text-gray-700">Customer Satisfaction</span>
+              <span className="text-blue-600 font-semibold">94%</span>
+            </div>
+            <div className="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
+              <span className="text-sm text-gray-700">Market Opportunity</span>
+              <span className="text-orange-600 font-semibold">High</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 ];
 
@@ -161,10 +161,14 @@ const EngagementModesSection = () => {
           <span role="img" aria-label="handshake">🤝</span> How You Engage With Your Companion
         </div>
         <h2 className="text-3xl md:text-4xl font-bold text-midnight mb-4">
-          Five Companion Engagement Modes
+        Built to Engage Where It Matters Most
+          {/* Five Companion Engagement Modes */}
         </h2>
         <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-          Your AI Companion doesn't just respond — it thinks, assists, and executes across multiple interaction patterns.
+        Your Companion collaborates through intuitive modes — guiding, alerting, assisting, and executing when it matters most.
+          {/* Your AI Companion doesn't just respond — it thinks, assists, and executes across multiple interaction patterns. */}
+          {/* Your AI Companion doesn't just respond — it thinks, assists, and executes across proactive nudges to in-depth conversations, fitting into your daily rhythm. */}
+          {/* From proactive nudges to in-depth conversations, your Companion fits into your daily rhythm. */}
         </p>
       </div>
 

@@ -5,10 +5,9 @@ import CompanionSection from '@/components/CompanionSection';
 import CapabilitiesSection from '../components/CapabilitiesSection';
 import EngagementModesSection from '../components/EngagementModesSection';
 import InsideCompanionSection from '@/components/InsideCompanionSection';
-
-
 import PlatformSection from '@/components/PlatformSection';
-
+import ValueUnlockSection from '@/components/ValueUnlockSection';
+import RetailCaseStudy from '@/components/RetailCaseStudy';
 import DifferentiationSection from '@/components/DifferentiationSection';
 import CTASection from '@/components/CTASection';
 import DefiningSection from '@/components/DefiningSection';
@@ -42,7 +41,13 @@ const Index = () => {
         <PlatformSection />
       </div>
       
-
+      <div className="snap-section">
+        <ValueUnlockSection />
+      </div>
+      
+      <div className="snap-section">
+        <RetailCaseStudy />
+      </div>
       
       <div className="snap-section">
         <DifferentiationSection />

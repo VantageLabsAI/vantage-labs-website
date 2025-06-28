@@ -4,9 +4,11 @@ import { motion, useInView } from 'framer-motion';
 const BACKGROUND_IMG = '/companion-bg.jpg'; // Place the image in public/ as companion-bg.jpg
 
 const phrases = [
-  'solving a problem',
   'making a decision',
-  'running your day',
+  'planning a move',
+  'analyzing data',
+  'writing a report',
+  'leading a team',
 ];
 
 const CompanionSection = () => {
@@ -18,14 +20,14 @@ const CompanionSection = () => {
   React.useEffect(() => {
     const interval = setInterval(() => {
       setPhraseIdx((idx) => (idx + 1) % phrases.length);
-    }, 2200);
+    }, 2500);
     return () => clearInterval(interval);
   }, []);
 
   const scrollToCapabilitiesSection = () => {
-  const capabilitiesSection = document.getElementById('capabilities');
+    const capabilitiesSection = document.getElementById('capabilities');
     if (capabilitiesSection) {
-    capabilitiesSection.scrollIntoView({ behavior: 'smooth' });
+      capabilitiesSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -43,59 +45,83 @@ const CompanionSection = () => {
         className="absolute inset-0 w-full h-full object-cover object-center z-0"
         style={{ filter: 'brightness(1.04) blur(0.5px)' }}
       />
-      {/* Optional overlay for readability */}
-      <div className="absolute inset-0 bg-black/20 z-10" />
+      
+      {/* Semi-transparent overlay for text legibility */}
+      <div className="absolute inset-0 bg-black/30 z-10" />
 
-      {/* Muted Header - centered, near top */}
-      <div className="w-full flex justify-center z-20" style={{ position: 'absolute', top: '8rem' }}>
+      {/* Main content container */}
+      <div className="relative z-20 flex flex-col items-center justify-center text-center max-w-4xl mx-auto px-6">
+        
+        {/* Line 1: Small caps, light weight */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-sm font-light uppercase tracking-widest flex items-center justify-center gap-2 mb-2 text-indigo-400"
+          className="text-base md:text-lg font-light tracking-widest mb-6"
+          style={{ color: '#E0E0DC', letterSpacing: '0.15em' }}
         >
-          <span role="img" aria-label="wave">👋</span> Meet your AI Companion
+          You've worked with tools. You've chatted with bots.
         </motion.div>
-      </div>
 
-      {/* Primary Headline */}
-      <motion.h2
-        initial={{ opacity: 0, y: 30 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1, delay: 0.2 }}
-        className="relative z-20 text-3xl md:text-5xl lg:text-6xl font-bold text-center max-w-4xl mx-auto mb-8 drop-shadow-xl"
-        style={{ fontFamily: 'Space Grotesk, system-ui, sans-serif', color: '#E0E0DC' }}
-      >
-        A new kind of partner — one that listens, reasons, and works with you.
-      </motion.h2>
-
-      {/* Optional Subheadline with animated phrase and new line for the rest */}
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="relative z-20 text-lg md:text-xl text-center max-w-2xl mx-auto"
-        style={{ textShadow: '0 2px 8px rgba(0,0,0,0.32)', color: '#E0E0DC' }}
-      >
-        Whether you're{' '}
-        <span
-          className="font-semibold"
-          style={{
-            color: '#D4AF37',
-            textShadow: '0 0 8px #8CB4F1, 0 0 16px #D4AF37',
-            padding: '0 0.25em',
-            background: 'rgba(0,0,0,0.08)',
-            borderRadius: '0.25em',
-            display: 'inline-block',
-            minWidth: '8.5em',
-            transition: 'color 0.3s',
+        {/* Line 2: Large hero-style line */}
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="w-full max-w-7xl mx-auto text-3xl md:text-4xl lg:text-5xl font-bold mb-8 leading-tight"
+          style={{ 
+            fontFamily: 'Space Grotesk, system-ui, sans-serif', 
+            color: '#FFFFFF',
+            textShadow: '0 2px 12px rgba(0,0,0,0.4)'
           }}
         >
-          {phrases[phraseIdx]}
-        </span>
-        <br />
-        — your Companion is right beside you, thinking through it all.
-      </motion.p>
+          Now meet your AI Companion — a thoughtful ally that understands your goals, anticipates what matters, and takes action when it counts.  
+          {/* Now meet your AI Companion — a thoughtful ally that listens, reasons, and grows with you. */}
+        </motion.h2>
+
+        {/* Line 3: Medium font with dynamic blinking text */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed"
+          style={{ 
+            color: '#E0E0DC',
+            textShadow: '0 2px 8px rgba(0,0,0,0.3)'
+          }}
+        >
+          Your Companion is always present, always aligned. Whether you're{' '}
+          <span className="relative inline-block">
+            <motion.span
+              key={phraseIdx}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="font-semibold"
+              style={{
+                color: '#D4AF37',
+                textShadow: '0 0 8px rgba(212, 175, 55, 0.3)',
+                padding: '0 0.25em',
+                background: 'rgba(0,0,0,0.1)',
+                borderRadius: '0.25em',
+                display: 'inline-block',
+                minWidth: '8.5em',
+              }}
+            >
+              {phrases[phraseIdx]}
+            </motion.span>
+            <motion.span
+              animate={{ opacity: [1, 0, 1] }}
+              transition={{ duration: 1, repeat: Infinity }}
+              className="ml-1 font-bold"
+              style={{ color: '#D4AF37' }}
+            >
+              |
+            </motion.span>
+          </span>
+          {/* … */}
+        </motion.p>
+      </div>
 
       {/* Explore Companion Capabilities CTA at the bottom */}
       <div className="w-full flex justify-center z-20" style={{ position: 'absolute', bottom: '2.5rem' }}>
@@ -112,9 +138,10 @@ const CompanionSection = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Explore Companion Capabilities
+            See What Makes It So Capable
+            {/* Explore Companion Capabilities */}
           </motion.button>
-         </motion.div>
+        </motion.div>
       </div>
 
       {/* Subtle floating particles */}

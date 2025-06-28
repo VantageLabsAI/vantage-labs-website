@@ -112,16 +112,17 @@ const InsideCompanionSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-6 md:mb-8"
         >
-          <div className="inline-flex items-center gap-2 text-slate bg-white/80 px-3 py-1.5 rounded-full border border-slate/10 mb-3 text-sm">
-            <Eye className="w-3 h-3" />
-            <span className="font-medium">Inside Your AI Companion</span>
+          <div className="text-sm font-light uppercase tracking-widest flex items-center justify-center gap-2 mb-4 text-indigo-400">
+            <span role="img" aria-label="handshake">⚡</span> What Powers Every Interaction
           </div>
           <h2 className="text-2xl md:text-4xl font-bold text-midnight mb-2 md:mb-3">
-            Enterprise-Grade Intelligence,<br />
-            <span className="text-indigo">Modular by Design</span>
+          Engineered For Depth. Tailored For Impact.
+          {/* Powered by Layers. Tuned for You. */}
+            {/* Enterprise-Grade Intelligence,<br />
+            <span className="text-indigo">Modular by Design</span> */}
           </h2>
-          <p className="text-slate text-sm max-w-2xl mx-auto">
-            Every AI Companion is powered by a layered architecture of agents and tools.
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            Behind every interaction is a layered system of expert agents and enterprise-grade tools — working together to understand, decide, and deliver with precision.
           </p>
         </motion.div>
 

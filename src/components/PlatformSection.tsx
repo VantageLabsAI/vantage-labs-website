@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Layers } from "lucide-react";
 
 interface LayerProps {
   title: string;
@@ -91,14 +92,17 @@ const PlatformSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-4"
         >
+          <div className="text-sm font-light uppercase tracking-widest flex items-center justify-center gap-2 mb-4 text-indigo-400">
+            <Layers size={16} strokeWidth={1.5} />
+            The Platform That Powers Every Companion
+          </div>
           <h2 className="text-4xl md:text-5xl font-bold text-midnight mb-6">
-            From one solution to a system of intelligence.
+          Built to Scale AI. Designed to Multiply Impact.
           </h2>
-          <p className="text-xl text-slate max-w-3xl mx-auto">
-            AI Nexus: Our enterprise platform designed for modular deployment,
-            centralized governance, and shared learning.
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            AI Nexus is your enterprise’s control center — making it easy to manage, evolve, and orchestrate intelligent Companions across teams, functions, and data systems.
           </p>
         </motion.div>
 

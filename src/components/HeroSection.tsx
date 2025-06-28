@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import AnimatedBackground from './AnimatedBackground';
+import { Dialog, DialogTrigger, DialogContent } from './ui/dialog';
 
 const HeroSection = () => {
   const scrollToCompanionSection = () => {
@@ -34,60 +35,81 @@ const HeroSection = () => {
       <AnimatedBackground />
 
       {/* Centered Content */}
-      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 w-full max-w-7xl mx-auto">
+      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 w-full max-w-[81rem] mx-auto">
+        {/* Headline */}
         <motion.h1
           className="text-4xl md:text-5xl lg:text-6xl font-bold text-midnight leading-tight drop-shadow-xl"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.4, 0, 0.2, 1] }}
         >
-          Unlock Competitive Advantage with AI That Thinks and Scales{' '}
-          <span className="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-emerald-300">
-            Like Your Best People
-          </span>
+          AI, Reimagined for the Enterprise
         </motion.h1>
 
+        {/* Subtext - Core Proposition */}
         <motion.p
-          className="text-2xl text-indigo-500 leading-relaxed max-w-2xl mx-auto mt-8"
+          className="text-xl md:text-2xl text-[#434349] leading-relaxed max-w-[700px] mx-auto mt-6 font-medium"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          We build and deploy AI Companions that automate critical thinking, insights, and decisions.
+          {/* Meet intelligent AI Companions that think strategically, act responsibly, and deliver business outcomes — just like your best teams. */}
+          Meet intelligent AI Companions that understand your business, reason through complexity, act responsibly, and drive real outcomes — just like your best teams.
         </motion.p>
 
-        <motion.div
-          className="flex flex-col sm:flex-row gap-3 mt-24 justify-center"
+        {/* Supporting Line - Tagline */}
+        <motion.p
+          className="text-base md:text-lg text-[#666] mt-5 font-medium tracking-wide"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+        >
+          Purpose-built for enterprises that expect more from AI.
+        </motion.p>
+
+        {/* CTA Button */}
+        <motion.div
+          className="mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.7 }}
         >
           <motion.button
             onClick={scrollToCompanionSection}
-            className="group px-6 py-3 bg-[#6366F1] text-white font-semibold rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-all duration-200 text-base"
+            className="group px-8 py-4 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 text-lg"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            Explore Our AI Companions
+            Discover What Makes It Different →
           </motion.button>
+        </motion.div>
 
-          <motion.button
-            onClick={scrollToSolutionSection}
-            className="group px-6 py-3 bg-[#6366F1] text-white font-semibold rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-all duration-200 text-base"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            See the Platform in Action
-          </motion.button>
-
-          <motion.button
-            onClick={scrollToStruggleSection}
-            className="group px-6 py-3 bg-[#6366F1] text-white font-semibold rounded-full shadow-lg hover:bg-indigo-700 hover:scale-105 transition-all duration-200 text-base"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Why AI, Why Now?
-          </motion.button>
+        {/* Secondary CTA as hyperlink text below the main button */}
+        <motion.div 
+          className="mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9 }}
+        >
+          <Dialog>
+            <DialogTrigger asChild>
+              <span
+                className="text-base text-gray-500 underline cursor-pointer hover:text-indigo-600 transition-colors"
+                style={{ display: 'inline-block' }}
+              >
+                How AI Will Reshape Enterprise Performance
+              </span>
+            </DialogTrigger>
+            <DialogContent className="w-full max-w-3xl h-screen flex flex-col justify-center items-center bg-white">
+              <h2 className="text-2xl font-bold mb-4 text-midnight text-center">How AI Will Reshape Enterprise Performance</h2>
+              <div className="text-lg text-gray-700 max-w-2xl mx-auto text-center">
+                {/* Replace this with your actual content/answer */}
+                <p>
+                  AI is fundamentally transforming how enterprises operate, compete, and deliver value. By embedding intelligence into every layer of the organization, AI enables faster decision-making, deeper insights, and more adaptive execution. From automating routine tasks to augmenting strategic thinking, AI will reshape performance benchmarks and unlock new sources of competitive advantage.
+                </p>
+              </div>
+            </DialogContent>
+          </Dialog>
         </motion.div>
       </div>
     </section>
