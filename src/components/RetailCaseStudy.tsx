@@ -74,7 +74,6 @@ const RetailCaseStudy: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
       },
     },
   };
@@ -86,7 +85,6 @@ const RetailCaseStudy: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
       },
     },
   };
@@ -98,7 +96,6 @@ const RetailCaseStudy: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
       },
     },
   };
@@ -110,7 +107,6 @@ const RetailCaseStudy: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
       },
     },
   };
@@ -122,7 +118,6 @@ const RetailCaseStudy: React.FC = () => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut",
       },
     },
   };
@@ -186,7 +181,6 @@ const RetailCaseStudy: React.FC = () => {
                         scale: 1,
                         transition: {
                           duration: 0.4,
-                          ease: "easeOut",
                         },
                       },
                     }}
