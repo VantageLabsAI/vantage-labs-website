@@ -229,9 +229,13 @@ const CompanionSection = () => {
         >
           <motion.button
             onClick={scrollToCapabilitiesSection}
-            className="group relative px-10 py-5 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white font-bold rounded-full shadow-2xl text-lg overflow-hidden"
+            // className="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-700 text-white font-bold rounded-full shadow-2xl text-lg overflow-hidden"
+            className="group relative px-8 py-4 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white font-bold rounded-full shadow-2xl text-lg overflow-hidden hover:shadow-xl transition-all duration-200"
             whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.98 }}
+            whileTap={{ scale: 0.95 }}          
+            // className="group px-8 py-4 bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 text-lg"
+            // whileHover={{ scale: 1.05 }}
+            // whileTap={{ scale: 0.95 }}
             style={{
               boxShadow: '0 10px 40px rgba(99, 102, 241, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)',
               backdropFilter: 'blur(10px)'
