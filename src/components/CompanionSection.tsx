@@ -249,7 +249,7 @@ const CompanionSection = () => {
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
                 →
-              </span>
+              </motion.span>
             </span>
             
             {/* Shine effect */}
