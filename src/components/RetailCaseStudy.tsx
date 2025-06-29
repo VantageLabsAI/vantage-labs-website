@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -122,47 +121,41 @@ const RetailCaseStudy: React.FC = () => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-gray-50 py-8 px-6">
+    <section className="min-h-screen flex flex-col items-center justify-between bg-gradient-to-b from-white to-gray-50 pt-[5vh] pb-[5vh] px-6">
       <motion.div
         ref={ref}
         variants={containerVariants}
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
-        className="max-w-7xl mx-auto w-full"
+        className="max-w-7xl mx-auto w-full flex flex-col h-full"
+        style={{ minHeight: '90vh' }}
       >
-        {/* Header - Reduced spacing */}
-        <div className="text-center mb-8">
-          <div className="text-xs font-light uppercase tracking-widest flex items-center justify-center gap-2 mb-3 text-indigo-400">
-            <span role="img" aria-label="unlock">🔓</span> From Pilot to Real-World Impact
+        {/* Header Block - tightly grouped, upper 30-35% of viewport */}
+        <motion.div
+          variants={headerVariants}
+          className="flex flex-col items-center justify-start text-center min-h-[30vh] max-h-[35vh] space-y-2 mb-0"
+        >
+          <div className="text-xs font-light uppercase tracking-widest text-indigo-400 mb-1">
+            FROM PILOT TO REAL-WORLD IMPACT
           </div>
-          <motion.h2
-            variants={headerVariants}
-            className="text-2xl md:text-3xl font-bold text-gray-900 mb-3"
-          >
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
             How a Leading Indian Agro-Chemicals Company
-          </motion.h2>
-          <motion.h3
-            variants={headerVariants}
-            className="text-xl md:text-2xl font-bold text-indigo-600 mb-4"
-          >
+          </h2>
+          <h3 className="text-xl md:text-2xl font-bold text-indigo-600">
             Transformed Retail with AI
-          </motion.h3>
-          <motion.div
-            variants={headerVariants}
-            className="border-l-4 border-indigo-500 pl-6 text-base text-gray-600 italic max-w-3xl mx-auto"
-          >
+          </h3>
+          <div className="border-l-4 border-indigo-500 pl-4 text-base text-gray-600 italic max-w-2xl mx-auto mt-1">
             Turning a business-critical domain into a proving ground for scalable, production-grade AI.
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
-        {/* Timeline Container - Adjusted positioning and spacing */}
-        <div className="relative py-12">
+        {/* Timeline Container - pushed lower, less vertical space */}
+        <div className="relative w-full flex-1 flex flex-col justify-center mt-8">
           {/* Central Timeline Line - Positioned to cut through icon centers */}
           <motion.div
             variants={timelineVariants}
             className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-gray-300 via-indigo-400 to-gray-300 transform -translate-y-1/2 z-0"
           />
-          
           {/* Timeline Content */}
           <div className="relative grid grid-cols-5 gap-2">
             {timelineData.map((item, index) => {
@@ -182,7 +175,6 @@ const RetailCaseStudy: React.FC = () => {
                   >
                     <IconComponent className="w-4 h-4 text-indigo-600" />
                   </motion.div>
-
                   {/* Card - Positioned with proper spacing */}
                   <motion.div
                     variants={cardVariants}
@@ -219,11 +211,10 @@ const RetailCaseStudy: React.FC = () => {
             })}
           </div>
         </div>
-
-        {/* Bottom CTA - Reduced spacing */}
+        {/* Bottom CTA - Reduced spacing, fits in viewport */}
         <motion.div
           variants={ctaVariants}
-          className="text-center mt-8"
+          className="text-center mt-6"
         >
           <button className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white rounded-lg text-base font-semibold hover:bg-indigo-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
             Explore Your AI Companion Journey
